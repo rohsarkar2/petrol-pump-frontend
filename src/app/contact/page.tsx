@@ -7,7 +7,7 @@ import { LinkButton } from "@/components/link-button";
 import { MapEmbed } from "@/components/map-embed";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/reveal";
-import { site } from "@/lib/site";
+import { photos, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -26,7 +26,7 @@ const rows = [
     icon: Phone,
     label: "Phone",
     value: site.phone,
-    note: "Add your number before publishing",
+    note: "",
     href: site.phoneHref,
   },
   {
@@ -53,7 +53,7 @@ export default function ContactPage() {
           </>
         }
         lede={`We are on the ${site.highway} stretch at ${site.locality}, close to Kalyani More. Entry from both directions of the highway, and somebody at the island whatever the hour.`}
-        image="/images/highway.jpg"
+        image={photos.building}
         imageAlt=""
       />
 
@@ -70,7 +70,10 @@ export default function ContactPage() {
                   className="grid gap-x-4 gap-y-1 border-b border-hairline py-4 sm:grid-cols-[7rem_1fr]"
                 >
                   <dt className="flex items-center gap-2 pt-0.5 font-display text-[0.67rem] font-extrabold tracking-[0.15em] text-ink-mute uppercase">
-                    <row.icon className="size-3.5 shrink-0" aria-hidden="true" />
+                    <row.icon
+                      className="size-3.5 shrink-0"
+                      aria-hidden="true"
+                    />
                     {row.label}
                   </dt>
                   <dd>
@@ -97,7 +100,12 @@ export default function ContactPage() {
             </dl>
 
             <div className="mt-7 flex flex-wrap gap-3">
-              <LinkButton href={site.mapsLink} external variant="hp" size="sign">
+              <LinkButton
+                href={site.mapsLink}
+                external
+                variant="hp"
+                size="sign"
+              >
                 <MapPin aria-hidden="true" />
                 Get directions
               </LinkButton>

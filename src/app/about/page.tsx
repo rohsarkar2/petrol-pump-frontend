@@ -9,12 +9,12 @@ import { HpLockup } from "@/components/hp-logo";
 import { PageHero } from "@/components/page-hero";
 import { Photo } from "@/components/photo";
 import { Reveal } from "@/components/reveal";
-import { site } from "@/lib/site";
+import { photos, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Ma Manasa Auto Fuel Service is an authorised Hindustan Petroleum dealership on NH-12 at Muragachha, near Kalyani More — petrol, diesel, CNG, EV charging and a tea counter, open 24×7.",
+    "Ma Manasa Auto Fuel Service is an authorised Hindustan Petroleum dealership on NH-12 at Muragachha, near Kalyani More — petrol, diesel, CNG, EV charging, lubricants and PUC, open 24×7.",
 };
 
 const promises = [
@@ -53,7 +53,7 @@ export default function AboutPage() {
           </>
         }
         lede={`An authorised Hindustan Petroleum dealership on ${site.highway} at ${site.locality}, built so that nobody driving this stretch has to make a second stop.`}
-        image="/images/forecourt-wide.jpg"
+        image={photos.forecourt}
         imageAlt=""
       />
       <Story />
@@ -84,9 +84,9 @@ function Story() {
             </p>
             <p className="lede">
               The forecourt was laid out for that mix. Petrol and diesel on the main
-              islands, an online CNG station fed straight off the pipeline, EV bays for cars
-              that plug in, and a Tea Junction counter for the driver who has been at the
-              wheel since dawn.
+              islands, an online CNG station fed straight off the pipeline, and EV bays for
+              cars that plug in. A Tea Junction counter for the driver who has been at the
+              wheel since dawn is being built now and will open shortly.
             </p>
             <p className="lede">
               Lubricants, PUC certificates, air and water are all on the same apron. The
@@ -100,24 +100,24 @@ function Story() {
 
         <Reveal delay={80} className="space-y-3">
           <Photo
-            src="/images/station-day.jpg"
-            alt="The HP rate board pole at the entry to the forecourt"
+            src={photos.entrySign}
+            alt="The HP sign and rate board at the entry to the forecourt"
             caption="The rate board at the entry"
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="h-64 sm:h-80"
           />
           <div className="grid grid-cols-2 gap-3">
             <Photo
-              src="/images/canopy-day.jpg"
-              alt="The canopy over the islands"
+              src={photos.canopy}
+              alt="Vehicles at the islands under the canopy"
               caption="Under the canopy"
               sizes="(max-width: 1024px) 50vw, 25vw"
               className="h-40 sm:h-52"
             />
             <Photo
-              src="/images/team.jpg"
-              alt="Forecourt staff at work"
-              caption="The team"
+              src={photos.dispenser}
+              alt="An attendant filling a two-wheeler at the petrol island"
+              caption="At the island"
               sizes="(max-width: 1024px) 50vw, 25vw"
               className="h-40 sm:h-52"
             />
@@ -185,9 +185,9 @@ function Location() {
             Barasat straight down it.
           </p>
           <Photo
-            src="/images/highway-sign.jpg"
-            alt="National highway direction signage"
-            caption="Watch for the signage"
+            src={photos.building}
+            alt="The station building and forecourt seen from the apron"
+            caption="Watch for the HP canopy"
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="mt-6 h-52 sm:h-64"
           />

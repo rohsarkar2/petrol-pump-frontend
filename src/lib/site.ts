@@ -11,7 +11,7 @@ export const site = {
   highway: "NH-12",
   landmark: "near Kalyani More",
   addressLines: ["Muragachha, NH-12, near Kalyani More", "Nadia, West Bengal"],
-  phone: "+91 XXXXX XXXXX",
+  phone: "+91-8100221804",
   phoneHref: "tel:+91XXXXXXXXXX",
   email: "XXXXX@example.com",
   hours: "Open 24 hours",
@@ -35,12 +35,12 @@ export const nav = [
 
 /** Sample board rates — replace with the forecourt board each morning. */
 export const rates = [
-  { name: "Petrol", note: null, price: 105.41, unit: "/L", highlight: false },
-  { name: "Diesel", note: null, price: 92.02, unit: "/L", highlight: false },
+  { name: "Petrol", note: null, price: 113.95, unit: "/L", highlight: false },
+  { name: "Diesel", note: null, price: 100.27, unit: "/L", highlight: false },
   {
     name: "HP Power 95",
     note: "High-octane petrol",
-    price: 112.6,
+    price: 124.18,
     unit: "/L",
     highlight: true,
   },
@@ -51,8 +51,42 @@ export const rates = [
     unit: "/L",
     highlight: true,
   },
-  { name: "CNG", note: "Online station", price: 86.0, unit: "/kg", highlight: false },
+  {
+    name: "CNG",
+    note: "Online station",
+    price: 86.0,
+    unit: "/kg",
+    highlight: false,
+  },
 ] as const;
+
+/**
+ * The pump's own photographs. Every image on the site comes from this set —
+ * drop new shots into `public/images/petrol-pump-images/` and point a key here
+ * at the new file to swap one out everywhere it is used.
+ */
+const photoDir = "/images/petrol-pump-images";
+
+export const photos = {
+  /** Wide view of the forecourt from the entry, rate board pole on the left. */
+  forecourt: `${photoDir}/1.jpeg`,
+  /** The station building beside the canopy — lube display, CNG panels. */
+  building: `${photoDir}/2.jpeg`,
+  /** The HP pole sign and Club HP rate board at the entry. */
+  entrySign: `${photoDir}/3.jpeg`,
+  /** Under the canopy, both islands with vehicles at the pumps. */
+  canopy: `${photoDir}/4.jpeg`,
+  /** Petrol dispenser close up — meter, nozzles and the UPI codes. */
+  dispenser: `${photoDir}/5.jpeg`,
+  /** The HP Power 95 / Power 100 dispenser. */
+  powerGrades: `${photoDir}/6.jpeg`,
+  /** The online CNG station compressor yard. */
+  cngStation: `${photoDir}/7.jpeg`,
+  /** An HP CNG cascade at the gate of the CNG yard. */
+  cngSupply: `${photoDir}/8.jpeg`,
+  /** A car being filled at the HP CNG dispenser. */
+  cngFill: `${photoDir}/9.jpeg`,
+} as const;
 
 export type ServiceIcon =
   | "pump"
@@ -76,6 +110,8 @@ export type Service = {
   image: string;
   imageAlt: string;
   wide?: boolean;
+  /** Not open yet — the card carries a "coming soon" marker. */
+  comingSoon?: boolean;
   details: string[];
 };
 
@@ -83,13 +119,14 @@ export const services: Service[] = [
   {
     slug: "diesel",
     title: "Diesel",
-    short: "Standard HP diesel on the main islands, with truck-friendly access.",
+    short:
+      "Standard HP diesel on the main islands, with truck-friendly access.",
     body: "Standard HP diesel on the main islands, with truck-friendly access and quick turnaround. The apron is wide enough for a full-length trailer to swing in off the highway and back out without reversing across traffic.",
     tag: "Bulk welcome",
     accent: "#0B4F9E",
     icon: "pump",
-    image: "/images/dispenser.jpg",
-    imageAlt: "HP diesel and petrol dispensers on the forecourt island",
+    image: photos.canopy,
+    imageAlt: "Loaded trucks at the fuel islands under the HP canopy",
     details: [
       "Truck and tanker access from both directions",
       "Bulk and fleet supply on account",
@@ -99,13 +136,14 @@ export const services: Service[] = [
   {
     slug: "petrol",
     title: "Petrol",
-    short: "Regular petrol for cars, bikes and autos, with the meter shown before every fill.",
+    short:
+      "Regular petrol for cars, bikes and autos, with the meter shown before every fill.",
     body: "Regular petrol for cars, bikes and autos. Calibrated nozzles, and the meter is reset to zero and shown to you before every fill — ask any time and the attendant will run it past you again.",
     tag: "All vehicles",
     accent: "#E1251B",
     icon: "pump",
-    image: "/images/canopy-day.jpg",
-    imageAlt: "The HP canopy over the petrol islands",
+    image: photos.dispenser,
+    imageAlt: "An HP petrol dispenser with the meter facing the customer",
     details: [
       "Zero shown before every fill",
       "Separate two-wheeler island at peak hours",
@@ -120,8 +158,8 @@ export const services: Service[] = [
     tag: "Premium grade",
     accent: "#C8901A",
     icon: "bolt",
-    image: "/images/station-day.jpg",
-    imageAlt: "The HP rate board pole at the entry to the forecourt",
+    image: photos.powerGrades,
+    imageAlt: "The HP Power 95 and Power 100 dispenser on the forecourt",
     details: [
       "95 octane with multifunctional additives",
       "Cleans injectors over regular use",
@@ -136,8 +174,8 @@ export const services: Service[] = [
     tag: "Top of the board",
     accent: "#8A4B12",
     icon: "bolt-plus",
-    image: "/images/driver.jpg",
-    imageAlt: "A driver at the wheel on the highway at dusk",
+    image: photos.entrySign,
+    imageAlt: "The HP sign and rate board at the entry to the forecourt",
     details: [
       "100 octane performance fuel",
       "For turbocharged and high-compression engines",
@@ -153,8 +191,8 @@ export const services: Service[] = [
     tag: "Pipeline fed",
     accent: "#106B3C",
     icon: "cng",
-    image: "/images/cng-bay.jpg",
-    imageAlt: "The CNG filling station bay",
+    image: photos.cngFill,
+    imageAlt: "A car being filled at the HP CNG dispenser",
     wide: true,
     details: [
       "Pipeline fed — steadier pressure than cascade stations",
@@ -165,31 +203,38 @@ export const services: Service[] = [
   {
     slug: "ev-charging",
     title: "EVC — electric vehicle charging",
-    short: "Charging bays for electric cars and two-wheelers, right on the forecourt.",
+    short:
+      "Charging bays for electric cars and two-wheelers, right on the forecourt.",
     body: "Charging bays for electric cars and two-wheelers, right on the forecourt. Park up, plug in, and spend the wait over a cup of tea instead of sitting in an empty lot somewhere off the highway.",
     tag: "Cars & two-wheelers",
     accent: "#1A73C7",
     icon: "ev",
-    image: "/images/ev-bay.jpg",
-    imageAlt: "Electric vehicle charging points on the forecourt",
+    image: photos.forecourt,
+    imageAlt: "The forecourt seen from the entry off the highway",
     wide: true,
     details: [
       "Chargers for cars and two-wheelers",
       "Lit and staffed through the night",
-      "Tea Junction a few steps away",
+      "Room to park clear of the fuel islands",
     ],
   },
   {
     slug: "tea-junction",
     title: "Tea Junction",
-    short: "Hot chai, coffee and snacks at the on-site counter.",
-    body: "Hot chai, coffee and snacks at the on-site Tea Junction counter. It stays open through the night with the pump, which matters more at 3 a.m. than it does at noon.",
-    tag: "Fresh & hot",
+    short: "Hot chai, coffee and snacks — the counter is being built now.",
+    body: "A Tea Junction counter for hot chai, coffee and snacks is being put up on the forecourt. Once it opens it will run through the night with the pump, which matters more at 3 a.m. than it does at noon.",
+    tag: "Chai & snacks",
     accent: "#8A5A2B",
     icon: "cup",
-    image: "/images/tea-junction.jpg",
-    imageAlt: "Chai being poured at the Tea Junction counter",
-    details: ["Chai, coffee and cold drinks", "Packaged snacks", "Open all night"],
+    image: photos.building,
+    imageAlt:
+      "The station building where the Tea Junction counter is coming up",
+    comingSoon: true,
+    details: [
+      "Chai, coffee and cold drinks",
+      "Packaged snacks",
+      "Will stay open through the night",
+    ],
   },
   {
     slug: "24x7",
@@ -199,8 +244,8 @@ export const services: Service[] = [
     tag: "Never shut",
     accent: "#12171C",
     icon: "clock",
-    image: "/images/canopy-night.jpg",
-    imageAlt: "The forecourt canopy lit up after dark",
+    image: photos.forecourt,
+    imageAlt: "The forecourt with vehicles at both islands",
     details: ["365 days a year", "Full apron lighting", "Air and water point"],
   },
   {
@@ -211,8 +256,8 @@ export const services: Service[] = [
     tag: "Genuine stock",
     accent: "#C8901A",
     icon: "oil",
-    image: "/images/lubricants.jpg",
-    imageAlt: "A mechanic working under the bonnet at the service bay",
+    image: photos.building,
+    imageAlt: "The HP lubricants display above the station building",
     details: [
       "Genuine HP lubricants, sealed packs",
       "Top-ups done at the bay",
@@ -222,13 +267,14 @@ export const services: Service[] = [
   {
     slug: "puc",
     title: "PUC certificate",
-    short: "Pollution Under Control testing and certificates issued on the spot.",
+    short:
+      "Pollution Under Control testing and certificates issued on the spot.",
     body: "Pollution Under Control testing and certificates issued on the spot. Bring the vehicle and its papers, and walk out with the certificate on the same visit — no second trip.",
     tag: "Same visit",
     accent: "#106B3C",
     icon: "doc",
-    image: "/images/puc.jpg",
-    imageAlt: "Paperwork being completed at the counter",
+    image: photos.dispenser,
+    imageAlt: "The attendant's counter beside the petrol island",
     details: [
       "Testing for petrol, diesel and CNG vehicles",
       "Certificate issued on the same visit",
@@ -244,7 +290,7 @@ export const marqueeItems = [
   "HP Power 100",
   "CNG Online Station",
   "EV Charging",
-  "Tea Junction",
+  "Tea Junction — Coming Soon",
   "Lubricants",
   "PUC Certificate",
   "Open 24×7",
@@ -264,77 +310,63 @@ export const directions = [
   { place: "Barasat / Kolkata", note: "South ▼" },
 ] as const;
 
+/**
+ * The gallery, in grid order. Spans are tuned so each row of the six-column
+ * grid fills exactly: wide (4) + tall (2), then three normals, and so on.
+ */
 export const gallery = [
   {
-    src: "/images/forecourt-wide.jpg",
-    alt: "The forecourt seen from the highway",
+    src: photos.forecourt,
+    alt: "The forecourt seen from the entry off the highway",
     caption: "The forecourt from NH-12",
     span: "wide",
   },
   {
-    src: "/images/dispenser.jpg",
-    alt: "HP dispensers on the island",
-    caption: "Calibrated dispensers",
+    src: photos.entrySign,
+    alt: "The HP pole sign and rate board at the entry",
+    caption: "The sign from the road",
     span: "tall",
   },
   {
-    src: "/images/canopy-night.jpg",
-    alt: "The canopy lit up at night",
-    caption: "Open through the night",
+    src: photos.dispenser,
+    alt: "An HP petrol dispenser with the meter facing the customer",
+    caption: "Zero shown before every fill",
     span: "normal",
   },
   {
-    src: "/images/cng-bay.jpg",
-    alt: "The CNG bay",
-    caption: "CNG bay",
+    src: photos.powerGrades,
+    alt: "The HP Power 95 and Power 100 dispenser",
+    caption: "Power 95 & Power 100",
     span: "normal",
   },
   {
-    src: "/images/ev-bay.jpg",
-    alt: "The EV charging bay",
-    caption: "EV charging",
-    span: "normal",
-  },
-  {
-    src: "/images/tea-junction.jpg",
-    alt: "Chai at the Tea Junction counter",
-    caption: "Tea Junction",
-    span: "normal",
-  },
-  {
-    src: "/images/lubricants.jpg",
-    alt: "Work under the bonnet at the service bay",
-    caption: "Lubricants & top-ups",
-    span: "normal",
-  },
-  {
-    src: "/images/cng-fill.jpg",
-    alt: "A vehicle being filled at the CNG bay",
-    caption: "CNG fills",
-    span: "wide",
-  },
-  {
-    src: "/images/station-day.jpg",
-    alt: "The HP rate board pole at the entry",
-    caption: "Rate board at the entry",
-    span: "normal",
-  },
-  {
-    src: "/images/highway.jpg",
-    alt: "NH-12 running past the pump",
-    caption: "The highway outside",
-    span: "normal",
-  },
-  {
-    src: "/images/canopy-day.jpg",
-    alt: "The canopy in daylight",
+    src: photos.canopy,
+    alt: "Trucks, cars and two-wheelers at the islands under the canopy",
     caption: "Under the canopy",
     span: "normal",
   },
   {
-    src: "/images/team.jpg",
-    alt: "Forecourt staff at work",
-    caption: "The team",
+    src: photos.building,
+    alt: "The station building beside the canopy",
+    caption: "The station building",
+    span: "wide",
+  },
+  {
+    src: photos.cngFill,
+    alt: "A car being filled at the HP CNG dispenser",
+    caption: "CNG fills",
+    span: "normal",
+  },
+  {
+    src: photos.cngStation,
+    alt: "The compressor yard of the online CNG station",
+    caption: "The online CNG station",
+    span: "wide",
+  },
+  {
+    src: photos.cngSupply,
+    alt: "An HP CNG cascade at the gate of the CNG yard",
+    caption: "CNG supply",
     span: "normal",
   },
 ] as const;

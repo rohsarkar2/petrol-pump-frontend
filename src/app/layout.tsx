@@ -4,7 +4,7 @@ import { Archivo, Doto, Instrument_Sans } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Toaster } from "@/components/ui/sonner";
-import { site } from "@/lib/site";
+import { photos, site } from "@/lib/site";
 
 import "./globals.css";
 
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}`,
   },
   description:
-    "Authorised HP dealer on NH-12 at Muragachha, near Kalyani More. Petrol, diesel, Power 95, Power 100, CNG online station, EV charging, lubricants, PUC and Tea Junction. Open 24x7.",
+    "Authorised HP dealer on NH-12 at Muragachha, near Kalyani More. Petrol, diesel, Power 95, Power 100, CNG online station, EV charging, lubricants and PUC. Tea Junction coming soon. Open 24x7.",
   keywords: [
     "HP petrol pump",
     "Muragachha",
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
     type: "website",
     title: `${site.name} — HP Petrol Pump on ${site.highway}`,
     description:
-      "Petrol, diesel, HP Power 95 & 100, an online CNG station, EV charging, lubricants, PUC and Tea Junction. Open 24×7 at Muragachha, near Kalyani More.",
+      "Petrol, diesel, HP Power 95 & 100, an online CNG station, EV charging, lubricants and PUC. Open 24×7 at Muragachha, near Kalyani More.",
     siteName: site.name,
-    images: ["/images/station-day.jpg"],
+    images: [photos.forecourt],
   },
 };
 

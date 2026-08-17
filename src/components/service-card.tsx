@@ -1,3 +1,4 @@
+import { ComingSoon } from "@/components/coming-soon";
 import { ServiceIcon } from "@/components/service-icon";
 import type { Service } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -19,14 +20,18 @@ export function ServiceCard({
         className,
       )}
     >
-      <div
-        className="mb-4 grid size-11 place-items-center rounded-[5px]"
-        style={{
-          background: "color-mix(in srgb, var(--accent) 14%, transparent)",
-          color: "var(--accent)",
-        }}
-      >
-        <ServiceIcon name={service.icon} className="size-6" />
+      <div className="mb-4 flex items-start justify-between gap-3">
+        <div
+          className="grid size-11 place-items-center rounded-[5px]"
+          style={{
+            background: "color-mix(in srgb, var(--accent) 14%, transparent)",
+            color: "var(--accent)",
+          }}
+        >
+          <ServiceIcon name={service.icon} className="size-6" />
+        </div>
+
+        {service.comingSoon ? <ComingSoon /> : null}
       </div>
 
       <h3
