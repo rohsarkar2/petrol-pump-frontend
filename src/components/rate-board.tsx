@@ -97,16 +97,16 @@ function RateRow({
         <span className="mr-1 font-sans text-[0.58em] font-semibold opacity-75">
           ₹
         </span>
-        <span ref={wholeRef} className="inline-block min-w-[3ch] text-right">
-          {whole}
-        </span>
+        <span ref={wholeRef}>{whole}</span>
         {/* Doto renders a full stop as a dot-matrix cross, so the decimal
             separator is set in the body font instead. */}
         <span className="mx-[0.03em] inline-block font-sans">.</span>
         <span className="ml-0.5" ref={fracRef}>
           {fraction}
         </span>
-        <span className="ml-1 font-sans text-[0.4em] font-semibold tracking-[0.06em] text-[#5c666b] text-shadow-none">
+        {/* Fixed width so "/kg" does not shove its row's digits left of the
+            "/L" rows — it keeps the prices right-aligned as a column. */}
+        <span className="ml-1 inline-block min-w-[2.4em] text-left font-sans text-[0.4em] font-semibold tracking-[0.06em] text-[#5c666b] text-shadow-none">
           {unit}
         </span>
       </span>
