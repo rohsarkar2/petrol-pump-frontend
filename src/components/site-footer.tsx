@@ -2,7 +2,8 @@ import Link from "next/link";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 import { Container } from "@/components/container";
-import { HpLogo } from "@/components/hp-logo";
+import { HpLockup } from "@/components/hp-logo";
+import { LogoMark } from "@/components/logo";
 import { nav, site } from "@/lib/site";
 
 export function SiteFooter() {
@@ -11,7 +12,9 @@ export function SiteFooter() {
       <Container>
         <div className="flex flex-col gap-8 border-b border-white/10 pb-8 lg:flex-row lg:items-start lg:justify-between">
           <div className="flex items-start gap-4">
-            <HpLogo size={48} />
+            {/* No plate needed — the footer is already the dark surface the
+                cut-out artwork expects. */}
+            <LogoMark size={56} plate={false} alt="" />
             <div>
               <div className="font-display text-xl leading-tight font-black tracking-[-0.02em] text-white uppercase">
                 {site.name}
@@ -70,6 +73,10 @@ export function SiteFooter() {
             Open 24×7 · <span lang="bn">{site.bengali}</span>
           </span>
         </div>
+
+        {/* The dealership's own mark now carries the brand up top, so the HP
+            badge sits with the attribution it belongs to. */}
+        <HpLockup className="mt-6" />
 
         <p className="mt-4 max-w-[74ch] text-[0.72rem] leading-relaxed text-[#63707b]">
           &ldquo;HP&rdquo;, &ldquo;HP Power&rdquo; and the Hindustan Petroleum marks belong to

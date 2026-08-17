@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { MapPin, Menu, Phone } from "lucide-react";
 
-import { HpLogo } from "@/components/hp-logo";
 import { LinkButton } from "@/components/link-button";
+import { LogoMark } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -34,7 +34,7 @@ export function SiteHeader() {
           className="mr-auto flex min-w-0 items-center gap-3"
           aria-label={`${site.name}, home`}
         >
-          <HpLogo size={40} className="shadow-[0_1px_0_rgb(18_23_28/0.14)]" />
+          <LogoMark size={42} className="shadow-[0_1px_0_rgb(18_23_28/0.14)]" />
           <span className="min-w-0">
             <span className="block truncate font-display text-[0.9rem] leading-tight font-black tracking-[-0.02em] uppercase">
               {site.shortName}
@@ -103,7 +103,7 @@ export function SiteHeader() {
             className="w-[86%] max-w-sm bg-paper p-0 gap-0"
           >
             <div className="flex items-center gap-3 border-b border-hairline p-5">
-              <HpLogo size={40} />
+              <LogoMark size={42} />
               <SheetTitle className="font-display text-[0.9rem] leading-tight font-black tracking-[-0.02em] uppercase">
                 {site.shortName}
                 <span className="mt-0.5 block text-[0.62rem] font-bold tracking-widest text-hp-blue">
