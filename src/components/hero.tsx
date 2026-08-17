@@ -52,9 +52,9 @@ export function Hero() {
             style={{ animationDelay: "0.5s" }}
           >
             An HP forecourt at {site.locality} with petrol, diesel, an online
-            CNG station and EV charging bays side by side — plus a Tea Junction
-            counter, lubricants and PUC certificates. The lights stay on all
-            night, so your run does not have to stop.
+            CNG station and EV charging bays side by side — plus lubricants and
+            PUC certificates, and a Tea Junction counter on the way. The lights
+            stay on all night, so your run does not have to stop.
           </p>
 
           <div

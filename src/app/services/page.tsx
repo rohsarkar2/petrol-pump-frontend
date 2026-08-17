@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Check } from "lucide-react";
 
+import { ComingSoon } from "@/components/coming-soon";
 import { Band, Container } from "@/components/container";
 import { CtaBand } from "@/components/cta-band";
 import { Marquee } from "@/components/marquee";
@@ -9,13 +10,13 @@ import { Photo } from "@/components/photo";
 import { Reveal } from "@/components/reveal";
 import { ServiceCard } from "@/components/service-card";
 import { ServiceIcon } from "@/components/service-icon";
-import { services } from "@/lib/site";
+import { photos, services } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Petrol, diesel, HP Power 95 and 100, an online CNG station, EV charging, Tea Junction, lubricants, PUC certificates and 24×7 service — everything on one forecourt at Muragachha.",
+    "Petrol, diesel, HP Power 95 and 100, an online CNG station, EV charging, lubricants, PUC certificates and 24×7 service — everything on one forecourt at Muragachha. Tea Junction coming soon.",
 };
 
 export default function ServicesPage() {
@@ -32,8 +33,8 @@ export default function ServicesPage() {
             one forecourt.
           </>
         }
-        lede="Ten services on a single apron. Roll in, get what you need, get back on the highway — no second stop, no detour into town."
-        image="/images/cng-fill.jpg"
+        lede="Many services on a single apron. Roll in, get what you need, get back on the highway — no second stop, no detour into town."
+        image={photos.cngFill}
         imageAlt=""
       />
 
@@ -178,9 +179,12 @@ export default function ServicesPage() {
                       className="h-40 shrink-0 rounded-none"
                     />
                     <div className="flex flex-1 flex-col p-5">
-                      <h3 className="font-display text-[1.05rem] font-extrabold tracking-[-0.02em]">
-                        {service.title}
-                      </h3>
+                      <div className="flex items-start justify-between gap-3">
+                        <h3 className="font-display text-[1.05rem] font-extrabold tracking-[-0.02em]">
+                          {service.title}
+                        </h3>
+                        {service.comingSoon ? <ComingSoon /> : null}
+                      </div>
                       <p className="mt-2 flex-1 text-[0.86rem] leading-relaxed text-ink-mute">
                         {service.body}
                       </p>

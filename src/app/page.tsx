@@ -10,7 +10,7 @@ import { Marquee } from "@/components/marquee";
 import { Photo } from "@/components/photo";
 import { Reveal } from "@/components/reveal";
 import { ServiceCard } from "@/components/service-card";
-import { chips, gallery, services, site } from "@/lib/site";
+import { chips, gallery, photos, services, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export default function HomePage() {
@@ -44,23 +44,23 @@ function ForecourtBand() {
 
         <Reveal className="grid gap-3 sm:h-[clamp(320px,44vw,470px)] sm:grid-cols-3 sm:grid-rows-2">
           <Photo
-            src="/images/forecourt-wide.jpg"
-            alt="The forecourt seen from the highway"
+            src={photos.forecourt}
+            alt="The forecourt seen from the entry off the highway"
             caption={`The forecourt from ${site.highway}`}
             priority
             sizes="(max-width: 640px) 100vw, 66vw"
             className="h-56 sm:col-span-2 sm:row-span-2 sm:h-full"
           />
           <Photo
-            src="/images/canopy-night.jpg"
-            alt="The HP canopy lit up at night"
-            caption="Open through the night"
+            src={photos.canopy}
+            alt="Trucks and two-wheelers at the islands under the HP canopy"
+            caption="Room for trucks to turn"
             sizes="(max-width: 640px) 100vw, 33vw"
             className="h-48 sm:h-full"
           />
           <Photo
-            src="/images/dispenser.jpg"
-            alt="HP dispensers on the island"
+            src={photos.dispenser}
+            alt="An HP petrol dispenser with the meter facing the customer"
             caption="Calibrated dispensers"
             sizes="(max-width: 640px) 100vw, 33vw"
             className="h-48 sm:h-full"
@@ -95,9 +95,9 @@ function AboutPreview() {
             <p className="lede">
               We built the forecourt so nobody has to make a second stop. Petrol
               and diesel on the main islands, an online CNG station fed straight
-              off the pipeline, EV bays for cars that plug in, and a Tea
+              off the pipeline, and EV bays for cars that plug in. A Tea
               Junction counter for the driver who has been at the wheel since
-              dawn.
+              dawn is being built now.
             </p>
           </div>
 
@@ -117,9 +117,9 @@ function AboutPreview() {
         <Reveal delay={80} className="space-y-8">
           <DirectionSign />
           <Photo
-            src="/images/highway.jpg"
-            alt={`${site.highway} running past the pump`}
-            caption="The highway outside"
+            src={photos.entrySign}
+            alt={`The HP sign and rate board facing ${site.highway}`}
+            caption="The sign from the road"
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="h-56 sm:h-72"
           />
@@ -208,14 +208,14 @@ function AlwaysOpen() {
           <p className="mt-4 max-w-[48ch] text-[#96a2ac]">
             No shutter hours, no lunch break, no &ldquo;come back in the
             morning.&rdquo; Every service on this page runs through the night —
-            fuel, CNG, charging and the tea counter.
+            fuel, CNG, charging and the lights across the apron.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-2.5">
             {chips.map((chip) => (
               <span
                 key={chip}
-                className="rounded-full border border-white/20 px-3.5 py-2 font-display text-[0.72rem] font-bold tracking-[0.1em] text-[#c4cdd4] uppercase"
+                className="rounded-full border border-white/20 px-3.5 py-2 font-display text-[0.72rem] font-bold tracking-widest text-[#c4cdd4] uppercase"
               >
                 {chip}
               </span>
@@ -259,7 +259,7 @@ function GalleryPreview() {
               className={
                 i === 0
                   ? "col-span-2 h-52 sm:h-72 lg:col-span-2 lg:h-80"
-                  : "h-36 sm:h-52 lg:h-[9.5rem] xl:h-40"
+                  : "h-36 sm:h-52 lg:h-38 xl:h-40"
               }
             />
           ))}

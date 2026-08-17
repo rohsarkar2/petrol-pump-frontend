@@ -5,13 +5,13 @@ import { CtaBand } from "@/components/cta-band";
 import { PageHero } from "@/components/page-hero";
 import { Photo } from "@/components/photo";
 import { Reveal } from "@/components/reveal";
-import { gallery } from "@/lib/site";
+import { gallery, photos, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "Photographs of the forecourt, fuel islands, CNG bay, EV charging points and Tea Junction counter at Ma Manasa Auto Fuel Service, NH-12 Muragachha.",
+    "Photographs of the forecourt, fuel islands, HP Power dispensers and the online CNG station at Ma Manasa Auto Fuel Service, NH-12 Muragachha.",
 };
 
 /** Column and height rules per tile shape, tuned for a 6-column grid. */
@@ -33,8 +33,8 @@ export default function GalleryPage() {
             before you pull in.
           </>
         }
-        lede="Every bay, counter and service, photographed as it actually is. These are stand-in photographs for now — the pump's own pictures go here."
-        image="/images/highway-sign.jpg"
+        lede="The forecourt, the islands, the CNG station and the building — photographed at the pump, exactly as they are."
+        image={photos.forecourt}
         imageAlt=""
       />
 
@@ -55,11 +55,8 @@ export default function GalleryPage() {
           </Reveal>
 
           <p className="mt-8 text-center text-[0.85rem] text-ink-mute">
-            Placeholder photography. Drop the pump&rsquo;s own photos into{" "}
-            <code className="rounded bg-concrete-2 px-1.5 py-0.5 font-mono text-[0.78rem]">
-              public/images/
-            </code>{" "}
-            under the same filenames to swap them in.
+            All photographs taken at {site.name}, {site.highway}{" "}
+            {site.locality}.
           </p>
         </Container>
       </Band>
