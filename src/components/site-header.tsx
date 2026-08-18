@@ -15,6 +15,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { scrollToTop } from "@/lib/scroll";
 import { nav, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -33,6 +34,14 @@ export function SiteHeader() {
           href="/"
           className="mr-auto flex min-w-0 items-center gap-3"
           aria-label={`${site.name}, home`}
+          onClick={(event) => {
+            // Already home: the route never changes, so navigation is a no-op.
+            // Send the reader back to the top instead.
+            if (pathname === "/") {
+              event.preventDefault();
+              scrollToTop();
+            }
+          }}
         >
           <LogoMark size={42} className="shadow-[0_1px_0_rgb(18_23_28/0.14)]" />
           <span className="min-w-0">

@@ -4,6 +4,7 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/container";
 import { HpLockup } from "@/components/hp-logo";
 import { LogoMark } from "@/components/logo";
+import { ScrollToTop } from "@/components/scroll-to-top";
 import { nav, site } from "@/lib/site";
 
 export function SiteFooter() {
@@ -25,20 +26,23 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <nav
-            className="flex flex-wrap gap-1 lg:justify-end"
-            aria-label="Footer"
-          >
-            {nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-[3px] px-3 py-2 font-display text-[0.75rem] font-bold tracking-[0.12em] uppercase transition-colors hover:bg-white/[0.07] hover:text-white"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <div className="flex flex-col items-start gap-4 lg:items-end">
+            <nav
+              className="flex flex-wrap gap-1 lg:justify-end"
+              aria-label="Footer"
+            >
+              {nav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-[3px] px-3 py-2 font-display text-[0.75rem] font-bold tracking-[0.12em] uppercase transition-colors hover:bg-white/[0.07] hover:text-white"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <ScrollToTop />
+          </div>
         </div>
 
         <div className="grid gap-6 border-b border-white/10 py-8 sm:grid-cols-2 lg:grid-cols-4">
